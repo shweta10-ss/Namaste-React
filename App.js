@@ -1,3 +1,8 @@
+//Episode 2 -part 2
+import React from "react";
+import ReactDOM from "react-dom";
+
+
 //part 1
 const heading = React.createElement("h1",
 {

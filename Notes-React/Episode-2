@@ -1,0 +1,90 @@
+Notes -
+
+Package.json is the configuration for NPM.
+parcel is dependency.
+Command to install it  - npm install -D parcel
+there r 2 types of dependency
+Dev dependency
+production dependency
+
+when parcel is installed it will add in package.json with parcel version.
+"parcel": "^2.9.3"
+
+when we see the version like - 2.9.3 here it is in format like - major.minor.patch
+here why this ^ (carot) sign is there . it means whenever any minor and patch upgrade is there . it will update it without upgrading to major version.
+
+if sign ~ is there it will update all the future patch without upgrading the minor version.
+
+npm allows installing newer version of a package than the one specified. Using tilde (~) gives you bug fix releases and caret (^) gives you backwards-compatible new functionality as well.
+
+The problem is old versions usually don't receive bug fixes that much, so npm uses caret (^) as the default for --save.
+
+Node-Modules - when you do npm install . it installs 3 things.
+1. package.json
+2.package-lock.json
+3. node_modules - it contains all the details of every dependency . it is huge in size. 
+We don't need to checkin the node_modules in git. if we delete it .
+and run npm install it will create node_module again. 
+but package.json and package-lock.json should be checked in to git.
+
+What is integrity hash : 
+The version of the package that should be installed. An integrity hash used to provide assurance that the package hasn't been tampered with. The resolved registry location indicating from where this package was retrieved and from where it should be retrieved for future installs.
+-------------------------------
+NPX - executing the package.
+NPM - means installing the package.
+CDN is not a prefered way to bring react into the project. 
+we can bring react into our project by npm.
+
+NPX parcel index.html when we execute . parcel creates a devlopment build on server and application runs on localhost.
+----------------------
+now we will remove the cdn links and install react from npm. 
+npm install react 
+npm install react-dom 
+
+now both are present in package.json file.
+now we use import statement to use react from npm.
+import React from "react";
+import ReactDom from "react-dom";
+
+after this when u execute ur app , you get error like 
+Build failed.
+
+@parcel/transformer-js: Browser scripts cannot have imports or exports.
+beacuse it consider it as browser script.
+so we will Add the type="module" attribute to the <script> tag.
+
+Read the Link -  https://parceljs.org/languages/javascript/#classic-scripts
+
+What Parcel does- 
+#parvel
+-Dev build
+-local server
+-HMR- hot module replacement
+File watching Algorithim - written in c++
+-Caching - Faster builds
+-Image Optimization
+-Minification 
+-Bundiling
+-Compressing
+-Consistent Hashing
+-Code Splitting
+-Defferential Bundling - Support older browsers
+-Diagnostic
+-Error Handling
+-HTTPS
+-Tree Shaking - remove unused code
+-Different dev and prod bundles
+
+Difference between http and https.
+Parcel  document - parcel.org
+---------------
+To make production ready app Run command 
+npx parcel build index.html
+
+we get erroe beacuse in package.json main="App.js" is there which npm has created .
+Remove this line and Run the command.
+-----------------
+https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
+
+if you want to support your app for different brosers you can use browserslist package from npm.
+in your package.json file add browserslist and name of the browser.

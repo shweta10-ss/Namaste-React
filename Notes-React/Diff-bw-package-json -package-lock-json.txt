@@ -1,0 +1,63 @@
+In Node.js, package.json is a versioning file used to install multiple packages in your project. As you initialize your node application, you will see three files installed in your app that is node_modules, package.json, and package.lock.json.
+
+You can initialize the node project by running the below command-
+
+npm init
+After initializing, your package.json will look something like this.
+
+{
+    "name": "Your project name",
+    "version": "1.0.0",
+    "description": "Your project description",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+    },
+    "author": "Author name",
+    "license": "ISC",
+    "dependencies": {
+        "dependency1": "^1.4.0",
+        "dependency2": "^1.5.2"
+    }
+}
+As we can see above, a package.json file contains metadata about the project and also the functional dependencies that is required by the application.
+
+Below is how a typical package.lock.json file looks,
+
+{
+    "name": "Your project name",
+    "version": "1.0.0",
+    "lockfileVersion": 1,
+    "requires": true,
+    "dependencies": {
+        "dependency1": {
+            "version": "1.4.0",
+            "resolved": 
+"https://registry.npmjs.org/dependency1/-/dependency1-1.4.0.tgz",
+            "integrity": 
+"sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA=="
+        },
+        "dependency2": {
+            "version": "1.5.2",
+            "resolved": 
+"https://registry.npmjs.org/dependency2/-/dependency2-1.5.2.tgz",
+            "integrity": 
+"sha512-WOn21V8AhyE1QqVfPIVxe3tupJacq1xGkPTB4iagT6o+P2cAgEOOwIxMftr4+ZCTI6d551ij9j61DFr0nsP2uQ=="
+        }
+    }
+}
+But the question is why package.lock.json is necessary when you have package.json in your project application. package.lock.json is created for locking the dependency with the installed version. It will install the exact latest version of that package in your application and save it in package.json. Let’s say if the current version of the package is 1.3.2 then it will save the version with (^) sign. Here carot(^) means, it will support any higher version with major version 1 for eg. 1.2.2. 
+
+Without package.lock.json, there might be some differences in installed versions in different environments. To overcome this problem, package.lock.json is created to have the same results in every environment. It should be in source control with the package.json file because if any other user will clone the project and install dependencies then it will install the exact same dependencies as in package.lock.json to avoid differences.
+
+Below are the main differences between the two,
+
+package.json                                                           package.lock.json
+
+
+
+It contains basic information about the project.	               It describes the exact tree that was generated to allow subsequent installs to have the identical tree.
+It is mandatory for every project.	                              It is automatically generated for those operations where npm modifies either node_modules tree or package.json.
+It records important metadata about the project.	             It allows future devs to install the same dependencies in the project.
+It contains information such as name, description, 
+author, script, and dependencies.	                              it contains the name, dependencies, and locked version of the project. 
